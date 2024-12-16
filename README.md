@@ -40,7 +40,7 @@ La arquitectura se diseñará con la siguiente estructura y direccionamiento IP:
 sudo apt-get update
 sudo apt-get install -y nginx
 
-# Configurar Nginx como balanceador
+# Configuramos Nginx como balanceador
 cat <<EOF > /etc/nginx/sites-available/loadbalancer
 upstream webservers {
     server 192.168.53.3;
@@ -155,7 +155,7 @@ Para ello he de instalar php, ademas he creado la carpeta que vamos a compartir 
 
 ```bash
 #!/bin/bash
-# Instalar NFS Server y dependencias
+# Instalacion de nfs y de libreria de mysql y php
 sudo apt-get update
 sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:ondrej/php
@@ -165,18 +165,18 @@ sudo apt install php7.4-intl
 sudo phpenmod intl
 sudo apt install unzip
 
-# Crear directorio compartido
+# Creacion del directorio compartido
 mkdir -p /var/nfs/shared/owncloud
 sudo chown -R nobody:nogroup /var/nfs/shared
 sudo chmod -R 777 /var/nfs/shared
 
-# Configurar exportaciones
+# Configuramos los archivos de /etc/exports
 echo "/var/nfs/shared 192.168.53.3/24(rw,sync,no_subtree_check)" >> /etc/exports
 echo "/var/nfs/shared 192.168.53.4/24(rw,sync,no_subtree_check)" >> /etc/exports
 sudo exportfs -ra
 sudo systemctl restart nfs-kernel-server
 
-# Descargar ownCloud
+# Descargamos owncloud
 sudo wget https://download.owncloud.com/server/stable/owncloud-complete-latest.zip
 sudo mkdir -p /var/nfs/shared/tmp/
 sudo unzip owncloud-complete-latest.zip -d /var/nfs/shared/tmp
@@ -205,13 +205,16 @@ sudo chown -R www-data:www-data /var/nfs/shared/
 
 -fichero de aprovisionamiento base de datos:
 ```bash
-
+#Instalacion de mysql
 sudo apt install mysql-server -y
 sudo apt update -y
 sudo apt install -y mysql-server
+
+#Establecer el bind address de nuestra maquina de mysql en el archivo de configfuracion #de mysql
 sed -i "s/^bind-address\s*=.*/bind-address = 192.168.53.6/" /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo systemctl restart mysql
 
+#Creacion de la base de datos 
 mysql <<EOF
 CREATE DATABASE db_owncloud;
 CREATE USER 'felipe'@'192.168.53.%' IDENTIFIED BY '1234';
