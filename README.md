@@ -1,11 +1,21 @@
 # cms-owncloud-3-capas
 
+## Índice
 
-# Introducción
+1. [Introducción](#introducción) 
+2. [Direccionamiento IP](#direccionamiento-ip)  
+3. [Infraestructura](#infraestructura)  
+   - [Capa 1: Balanceador de carga](#capa-1-balanceador-de-carga)  
+   - [Capa 2: BackEnd](#capa-2-backend)  
+   - [Capa 3: Datos](#capa-3-datos)  
+
+---
+
+## Introducción
 
 -Este proyecto tiene como objetivo desplegar un cms en 3 capas la cual ira compuesta con ficheros de aprovisionamientos los cuales una será del balanceador(capa1), Bakcends + NFS (capa2),Base de datos(capa3).
 
-### Direccionamiento IP
+## Direccionamiento IP
 El direccionamiento IP de las máquinas se organizará dentro de la subred `192.168.56.0/24` para facilitar la comunicación local.  
 - **192.168.53.2:** Balanceador de carga.  
 - **192.168.53.3 - 192.168.53.4:** Servidores web backend.  
