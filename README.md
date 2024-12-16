@@ -11,7 +11,7 @@
 3. [Infraestructura](#infraestructura)  
    - [Capa 1: Balanceador de carga](#capa-1-balanceador-de-carga)  
    - [Capa 2: BackEnd](#capa-2-backend)  
-   - [Capa 3: Datos](#capa-3-datos)  
+   - [Capa 3: Base Datos](#capa-3-datos)  
 
 ---
 
