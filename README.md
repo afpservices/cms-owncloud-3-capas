@@ -65,6 +65,20 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
 
 ```
+- Para la realizacion de la configuracion del balanceador he de instalar nginx anteriormente, ademas de configurar el fichero del balanceador, el cual he creado en /etc/nginx/sites-available/ y lo he configurado para que en el balanceo de carga funcione correctamente con los servidores:
+
+  ![image](https://github.com/user-attachments/assets/483a05b8-9ca2-4265-a35b-3e5de74b2289)
+
+-Luego una vez configurado todo procedemos a crear un enlace el cual hara una copia exacta de la configuracion que hemos realizado antes y la enrutaremos hacia sites-enabled para activarla y eliminamos la que viene ppor defecto 
+
+![image](https://github.com/user-attachments/assets/30b082fa-0195-42a4-b83f-2878c62af84e)
+
+Eliminamos default
+![image](https://github.com/user-attachments/assets/3eb38e27-6c6b-486d-859c-cbf523da1aa3)
+
+Reiniciamos nginx
+
+![image](https://github.com/user-attachments/assets/427ae6d0-c208-4d75-b9b9-1a3a0d53c8cd)
 
 
 ### Capa 2: BackEnd
@@ -124,6 +138,13 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx.service
 
 ```
+Para ello he de instalar php, ademas he creado la carpeta que vamos a compartir y dado permisos a cierta carpeta, ademas de configurar el fichero /etc/fstab
+
+![image](https://github.com/user-attachments/assets/1028cc0f-d6f8-4dba-ae6b-64ef525d2d02)
+
+-Ademas hemos configurado el archivo de owncloud de sites-available 
+
+![image](https://github.com/user-attachments/assets/4e7817ab-1849-4257-b5b9-25fe1fc67daa)
 
 
 - Una máquina con servidor NFS para compartir los datos del CMS y un motor PHP-FPM para el procesamiento de las peticiones PHP.  
@@ -167,7 +188,17 @@ sudo chown -R www-data:www-data /var/nfs/shared/
 
 
 ```
-### Capa 3: Datos
+
+-Para ello hemos creado la carpeta de compartido y dado los permisos necesarios 
+
+![image](https://github.com/user-attachments/assets/5fd5faa8-e6f3-4aa1-a7a9-df5fe514769d)
+
+-Ademas de configurar los archivos de /etc/exports
+
+![image](https://github.com/user-attachments/assets/9f846364-c02b-45ff-8442-b5faaf599a69)
+
+
+### Capa 3: Base de Datos
 - Una máquina con base de datos MariaDB.  
   - **Nombre de la máquina:** `bbddfelipe`  
   - **IP:** `192.168.53.6`
@@ -188,6 +219,13 @@ GRANT ALL PRIVILEGES ON db_owncloud.* TO 'felipe'@'192.168.53.%';
 FLUSH PRIVILEGES;
 EOF
 ```
+- Para ello hemos intalador mysql y hemos asingado el bind-address en el archivo de configuracion de mysqld.cnf
 
+![image](https://github.com/user-attachments/assets/2946a6ec-596b-4972-b3bb-bdc8683db192)
+
+
+- Ademas hemos creado la base de datos con nuestro usuario 
+
+![image](https://github.com/user-attachments/assets/636b13eb-cc3e-48bc-bf26-6be386a696cf)
 
 
