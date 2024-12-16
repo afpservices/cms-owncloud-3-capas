@@ -1,5 +1,9 @@
 # cms-owncloud-3-capas-felipe
 
+!!!Antes de empezar, owncloud en la comprobacion se me queda colgado pero anteriormente me habia accedido correctamente a la carpeta de configuracion del mismo !!!
+
+
+
 ## Índice
 
 1. [Introducción](#introducción) 
